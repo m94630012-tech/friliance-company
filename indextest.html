@@ -1,0 +1,209 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>La Vita Coffee</title>
+  <style>
+    :root {
+      --violet: #6a0dad;
+      --red: #ff3b3b;
+      --blue: #1e90ff;
+      --hover-blue: #1e90ff;
+      --hover-lightblue: deepskyblue;
+      --hover-green: #7CFC00;
+      --gradient-speed: 4s;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #0b0b0b;
+      color: #fff;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 28px;
+      background: rgba(0,0,0,0.7);
+      position: sticky; top: 0; z-index: 100;
+    }
+    header h2 { margin:0; font-size: 24px; }
+    nav { display: flex; gap: 16px; }
+    .nav-btn {
+      position: relative; display: inline-block;
+      padding: 8px 16px; border-radius: 8px;
+      color: #fff; text-decoration: none; cursor: pointer;
+      overflow: visible; background: transparent; border: none;
+      font-weight: 500;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .nav-btn span { position: relative; z-index: 3; pointer-events: none; }
+    .nav-btn::before {
+      content: "";
+      position: absolute; inset: 0;
+      border-radius: 8px; z-index:1;
+      background: linear-gradient(90deg, var(--violet) 0%, var(--red) 50%, var(--blue) 100%);
+      background-size: 300% 100%;
+      animation: moveGradient var(--gradient-speed) linear infinite;
+    }
+    .nav-btn::after {
+      content: "";
+      position: absolute; inset: 0;
+      border-radius: 8px; z-index:2; opacity:0;
+      pointer-events: none;
+      background-size: 300% 100%;
+      animation: moveGradient var(--gradient-speed) linear infinite;
+      transition: opacity .36s ease;
+    }
+    .nav-btn:hover::after {
+      opacity: 1;
+      background-image: linear-gradient(90deg, var(--hover-blue) 0%, var(--hover-lightblue) 50%, var(--hover-green) 100%);
+      box-shadow: 0 10px 28px rgba(0,191,255,0.12);
+    }
+    .nav-btn:active::after {
+      opacity: 1;
+      background-image: linear-gradient(90deg, var(--red) 0%, var(--blue) 50%, var(--hover-lightblue) 100%);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+      transition: opacity .08s linear;
+    }
+    .nav-btn:hover { transform: translateY(-3px) scale(1.03); filter: brightness(1.06); }
+    .nav-btn:active { transform: translateY(0) scale(.97); filter: brightness(.95); }
+
+    @keyframes moveGradient {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: url("https://images.unsplash.com/photo-1652006836828-64039c0b3f82?w=1200") no-repeat center/cover;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+    }
+    .hero h1, .hero p {
+      position: relative;
+      z-index: 1;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+    }
+    .hero h1 { font-size: 42px; margin-bottom: 12px; }
+    .hero p { font-size: 20px; max-width: 600px; }
+
+    main { padding: 36px 48px; min-height: calc(100vh - 100px); }
+    section.page { display: none; opacity: 0; transform: translateY(8px); transition: opacity .34s ease, transform .34s ease; max-width: 1200px; margin: 0 auto 40px; }
+    section.page.active { display: block; opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 800px) {
+      .hero h1 { font-size: 28px; }
+      .hero p { font-size: 16px; }
+      main { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+
+<header>
+  <h2>La Vita Coffee</h2>
+  <nav>
+    <a class="nav-btn" href="#home"><span>Главная</span></a>
+    <a class="nav-btn" href="#menu"><span>Меню</span></a>
+    <a class="nav-btn" href="#coffee-desserts"><span>Кофе и десерты</span></a>
+    <a class="nav-btn" href="#modern-desserts"><span>Современные десерты</span></a>
+    <a class="nav-btn" href="#contacts"><span>Контакты</span></a>
+  </nav>
+</header>
+
+<!-- Hero -->
+<section class="hero" id="home">
+  <h1>Добро пожаловать в La Vita Coffee</h1>
+  <p>Лучший кофе и десерты в уютной атмосфере города.</p>
+</section>
+
+<main>
+  <!-- Меню -->
+  <section id="menu" class="page">
+    <h2>Меню</h2>
+    <img src="https://images.unsplash.com/photo-1743811929045-5201cb3a53c9?w=1000&auto=format&fit=crop&q=60" 
+         alt="Меню кафе" style="width:100%; border-radius:12px; margin-bottom:20px;">
+  </section>
+
+  <!-- Кофе и десерты -->
+  <section id="coffee-desserts" class="page">
+    <h2>Кофе и десерты</h2>
+    <div class="gallery">
+      <img src="https://images.unsplash.com/photo-1511993839919-722684ee21f8?w=600" alt="Кофе и десерт 1">
+      <img src="https://images.unsplash.com/photo-1613484342910-99b19ba824b3?w=600" alt="Кофе и десерт 2">
+      <img src="https://images.unsplash.com/photo-1629612212286-52d66243b79e?w=600" alt="Кофе и десерт 3">
+    </div>
+  </section>
+
+  <!-- Современные десерты -->
+  <section id="modern-desserts" class="page">
+    <h2>Современные десерты</h2>
+    <div class="gallery">
+      <img src="https://images.unsplash.com/photo-1729869257013-0ecac0b98164?w=600" alt="Современный десерт 1">
+      <img src="https://plus.unsplash.com/premium_photo-1723759448747-1d174225e61f?w=600" alt="Современный десерт 2">
+      <img src="https://images.unsplash.com/photo-1730871082582-49e083b500a1?w=600" alt="Современный десерт 3">
+    </div>
+  </section>
+
+  <!-- Контакты -->
+  <section id="contacts" class="page">
+    <h2>Контакты</h2>
+    <p>Адрес: ул. Примерная, дом 1, Город</p>
+    <p>Телефон: +123456789</p>
+    <p>Email: example@mail.com</p>
+  </section>
+</main>
+
+<script>
+(function(){
+  const sections = document.querySelectorAll('section.page');
+
+  function showSection(id){
+    if(!id) id = 'home';
+    let found = false;
+    sections.forEach(s=>{
+      if(s.id === id){
+        s.classList.add('active');
+        found = true;
+      } else {
+        s.classList.remove('active');
+      }
+    });
+    if(!found){
+      document.getElementById('home').classList.add('active');
+      history.replaceState(null, '', '#home');
+    } else {
+      if(location.hash !== '#' + id) location.hash = id;
+    }
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  document.addEventListener('DOMContentLoaded', ()=>{
+    const id = location.hash ? location.hash.substring(1) : 'home';
+    showSection(id);
+  });
+
+  window.addEventListener('hashchange', ()=>{
+    const id = location.hash ? location.hash.substring(1) : 'home';
+    showSection(id);
+  });
+})();
+</script>
+
+</body>
+</html>
